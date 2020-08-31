@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 
 // - Application Assemblies
-using Komodo.Sevices.DbContext.Aggregates;
 
 namespace Komodo.Sevices.DbContext
 {
