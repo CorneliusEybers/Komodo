@@ -1,0 +1,35 @@
+﻿@model Komodo.Ui.ViewModels.CommodityIndexViewModel
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+  <title></title>
+</head>
+<body>
+  <h1>View Commodity Index</h1>
+<table>
+  <thead>
+  <tr>Code</tr>
+  <tr>Description</tr>
+  <tr>Group</tr>
+  <tr>Action</tr>
+  </thead>
+  @foreach (var commodityViewModel in Model.CommodityViewModels)
+  {
+    <tr>
+      <td>
+        @commodityViewModel.CommodityCode
+      </td>
+      <td>
+        @commodityViewModel.CommodityDescription
+      </td>
+      <td>
+        @commodityViewModel.CommodityGroupCode
+      </td>
+      <td>
+        Button
+      </td>
+    </tr>
+  }
+</table>
+</body>
+</html>
