@@ -1,14 +1,11 @@
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+// - Required Assemblies
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
+
+// - Application Assemblies
 
 namespace Komodo.Sevices
 {
@@ -39,8 +36,6 @@ namespace Komodo.Sevices
       }
 
       app.UseRouting();
-
-      app.UseAuthorization();
 
       app.UseEndpoints(endpoints =>
       {

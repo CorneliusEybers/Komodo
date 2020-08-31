@@ -9,11 +9,13 @@
     }
   },
   "profiles": {
-    "IIS Express": {
+    "IIS Express":
+    {
       "commandName": "IISExpress",
       "launchBrowser": true,
-      "launchUrl": "weatherforecast",
-      "environmentVariables": {
+      "launchUrl": "commodity",
+      "environmentVariables":
+      {
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
