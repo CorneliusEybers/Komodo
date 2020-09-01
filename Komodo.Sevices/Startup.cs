@@ -1,6 +1,4 @@
 // - Required Assemblies
-
-using Komodo.Sevices.DbContext;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -9,25 +7,40 @@ using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 
 // - Application Assemblies
+using Komodo.Sevices.DbContext;
+using Komodo.Sevices.Repositories.Commodity;
 
 namespace Komodo.Sevices
 {
   public class Startup
   {
-    public Startup(IConfiguration configuration)
-    {
-      Configuration = configuration;
-    }
+
+    #region Properties
 
     public IConfiguration Configuration
     {
       get;
     }
 
+    #endregion
+
+    #region Construct
+
+    public Startup(IConfiguration configuration)
+    {
+      Configuration = configuration;
+    }
+
+    #endregion
+
+    #region Methods
+
     // This method gets called by the runtime. Use this method to add services to the container.
     public void ConfigureServices(IServiceCollection services)
     {
-      services.AddDbContext<KomodoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KomodoConnection")));
+      services.AddMvc();
+      services.AddDbContextPool<KomodoDbContext>(options => options.UseSqlServer(Configuration.GetConnectionString("KomodoDbContext")));
+      services.AddScoped<ICommodityRepository, CommodityRepositorySql>();
       services.AddControllers();
     }
 
@@ -40,11 +53,9 @@ namespace Komodo.Sevices
       }
 
       app.UseRouting();
-
-      app.UseEndpoints(endpoints =>
-      {
-        endpoints.MapControllers();
-      });
+      app.UseEndpoints(endpoints => {endpoints.MapControllerRoute("default","/api/{controller=Commodity}/{action=GetCommodities}");});
     }
+
+    #endregion
   }
 }
