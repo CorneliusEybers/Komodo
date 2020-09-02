@@ -67,6 +67,45 @@ namespace Komodo.Services.Tests
       return commodityGroups;
     }
 
+    internal static List<Commodity> BuildCommodities()
+    { 
+      List<Commodity> commodities = new List<Commodity>()
+                                    {
+                                      new Commodity()
+                                      {
+                                        CommodityId          = 1,
+                                        CommodityCode        = "001",
+                                        CommodityDescription = "Commodity001"
+                                      },
+                                      new Commodity()
+                                      {
+                                        CommodityId          = 2,
+                                        CommodityCode        = "002",
+                                        CommodityDescription = "Commodity002"
+                                      },
+                                      new Commodity()
+                                      {
+                                        CommodityId          = 3,
+                                        CommodityCode        = "003",
+                                        CommodityDescription = "Commodity003"
+                                      }
+                                    };
+
+      return commodities;
+    }
+
+    internal static Commodity BuildCommodity(int commodityId)
+    {
+      var commodity = new Commodity()
+                      {
+                        CommodityId = commodityId,
+                        CommodityCode = commodityId.ToString("0000"),
+                        CommodityDescription = "Commodity" + commodityId.ToString("000")
+                      };
+
+      return commodity;
+    }
+
     internal static CommodityGroup BuildCommodityGroup(int commodityGroupId)
     {
       var commodityGroup = new CommodityGroup()

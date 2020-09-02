@@ -1,7 +1,5 @@
 // - Required Assemblies
-
 using System;
-using System.Collections;
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -42,8 +40,12 @@ namespace Komodo.Services.Tests
     //-----------------
     // - Always test against the database in the Service layer to ensure schema is correct.
     // - Normally do not test existing data in the database as this can change over time
-    //   and cause tests to fail that should pass.
-    // - Normally will run test in transaction and rollback after test.
+    //   and cause tests to fail that should pass. For this purpose each test is 
+    //   wrapped in Begin-End-Transaction, test data is created on the database for that
+    //   test and then after the test it is all undone after rollback transaction.
+    // - Normally will run unit-test in transaction and rollback after test.
+    // - There are about 3 scenarios per ContollerMethod() that should be added 
+    //   as part of TDD
     // - I cannot justify the time for this small project
     // - This is a conceptual proof that I know he inner workings of TDD...
 
@@ -67,7 +69,8 @@ namespace Komodo.Services.Tests
       Assert.IsNotNull(result);
       var okResult = result.Result as ObjectResult;
       Assert.AreEqual(200, okResult.StatusCode);
-      Assert.AreEqual(commodityGroups.Count, result.Value.Count);
+      var commodityGroupsResult = okResult.Value as List<CommodityGroup>;
+      Assert.AreEqual(commodityGroups.Count, commodityGroupsResult.Count);
     }
 
     [TestMethod]
@@ -126,7 +129,7 @@ namespace Komodo.Services.Tests
     }
 
     [TestMethod]
-    public async Task Method()
+    public async Task UpdateCommodityGroup()
     {
       // - Given
       var resources        = new Resources();
