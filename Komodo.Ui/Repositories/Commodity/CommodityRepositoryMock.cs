@@ -252,7 +252,7 @@ namespace Komodo.Ui.Repositories.Commodity
     #region PrivateMethods
 
     /// <summary>
-    /// - Build up the list of 
+    /// - Build up the list of CommodityGroups with child Commodities
     /// </summary>
     private void BuildCommodityGroupsMock(int commodityGroupDepth)
     {
