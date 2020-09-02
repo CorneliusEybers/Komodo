@@ -112,7 +112,7 @@ namespace Komodo.Services.Tests
                .Returns(Task.FromResult<CommodityGroup>(commodityGroupOut));
 
       // - When
-      var result = await resources.Controller.GetCommodityGroup(commodityGroupId);
+      var result = await resources.Controller.CreateCommodityGroup(commodityGroupIn);
       
       // - Then
       Assert.IsNotNull(result);
@@ -120,6 +120,62 @@ namespace Komodo.Services.Tests
       Assert.AreEqual(200,okObjectResult.StatusCode);
       var commodityGroupResult = okObjectResult.Value as CommodityGroup;
       Assert.AreEqual(commodityGroupId,commodityGroupResult.CommodityGroupId);
+      Assert.AreEqual(commodityGroupOut.CommodityGroupCode,commodityGroupResult.CommodityGroupCode);
+      Assert.AreEqual(commodityGroupOut.CommodityGroupDescription, commodityGroupResult.CommodityGroupDescription);
+      Assert.AreEqual(commodityGroupOut.Commodities.Count, commodityGroupResult.Commodities.Count);
+    }
+
+    [TestMethod]
+    public async Task Method()
+    {
+      // - Given
+      var resources        = new Resources();
+      var commodityGroupId = 2;
+
+      // - Setup the Mock to Repository
+      CommodityGroup commodityGroupIn  = TestSetup.BuildCommodityGroup(0);
+      CommodityGroup commodityGroupOut = TestSetup.BuildCommodityGroup(commodityGroupId);
+
+      resources.Repository.Setup(Rps => Rps.UpdateCommodityGroup(commodityGroupIn))
+               .Returns(Task.FromResult<CommodityGroup>(commodityGroupOut));
+
+      // - When
+      var result = await resources.Controller.UpdateCommodityGroup(commodityGroupIn);
+      
+      // - Then
+      Assert.IsNotNull(result);
+      var okObjectResult = result.Result as OkObjectResult;
+      Assert.AreEqual(200,okObjectResult.StatusCode);
+      var commodityGroupResult = okObjectResult.Value as CommodityGroup;
+      Assert.AreEqual(commodityGroupId,commodityGroupResult.CommodityGroupId);
+      Assert.AreEqual(commodityGroupOut.CommodityGroupCode,commodityGroupResult.CommodityGroupCode);
+      Assert.AreEqual(commodityGroupOut.CommodityGroupDescription, commodityGroupResult.CommodityGroupDescription);
+      Assert.AreEqual(commodityGroupOut.Commodities.Count, commodityGroupResult.Commodities.Count);
+    }
+
+    [TestMethod]
+    public async Task DeleteCommodityGroup()
+    {
+      // - Given
+      var resources = new Resources();
+      var commodityGroupId = 2;
+
+      // - Setup the Mock to Repository
+      CommodityGroup commodityGroupOut  = TestSetup.BuildCommodityGroup(0);
+
+      resources.Repository.Setup(Rps => Rps.DeleteCommodityGroup(commodityGroupId))
+               .Returns(Task.FromResult<CommodityGroup>(commodityGroupOut));
+
+      // - When
+      var result = await resources.Controller.DeleteCommodityGroup(commodityGroupId);
+      
+      // - Then
+      Assert.IsNotNull(result);
+      var okObjectResult = result.Result as OkObjectResult;
+      Assert.AreEqual(200,okObjectResult.StatusCode);
+      var commodityGroupResult = okObjectResult.Value as CommodityGroup;
+      Assert.AreEqual(0,commodityGroupResult.CommodityGroupId);   // - returns an undo object that is ready to be inserted again.
+
       Assert.AreEqual(commodityGroupOut.CommodityGroupCode,commodityGroupResult.CommodityGroupCode);
       Assert.AreEqual(commodityGroupOut.CommodityGroupDescription, commodityGroupResult.CommodityGroupDescription);
       Assert.AreEqual(commodityGroupOut.Commodities.Count, commodityGroupResult.Commodities.Count);
