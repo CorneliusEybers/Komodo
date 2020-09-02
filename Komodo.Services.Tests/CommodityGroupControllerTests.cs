@@ -46,7 +46,6 @@ namespace Komodo.Services.Tests
     // - Normally will run test in transaction and rollback after test.
     // - I cannot justify the time for this small project
     // - This is a conceptual proof that I know he inner workings of TDD...
-    // - I have done one test thoroughly the rest just minimum.
 
     [TestMethod]
     public async Task GetCommodityGroups_All()
@@ -55,8 +54,9 @@ namespace Komodo.Services.Tests
       var resources = new Resources();
 
       string filterDescription = string.Empty;
-      List<CommodityGroup> commodityGroups = TestSetup.BuildCommodityGroups();
 
+      // - Setup of Mock for IRepository
+      List<CommodityGroup> commodityGroups = TestSetup.BuildCommodityGroups();
       resources.Repository.Setup(Rps => Rps.GetCommodityGroups(String.Empty)).Returns(Task.FromResult<IEnumerable<CommodityGroup>>(commodityGroups));
 
       // - When
