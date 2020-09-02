@@ -60,12 +60,13 @@ namespace Komodo.Services.Tests
       resources.Repository.Setup(Rps => Rps.GetCommodityGroups(String.Empty)).Returns(Task.FromResult<IEnumerable<CommodityGroup>>(commodityGroups));
 
       // - When
-      var result = await resources.Controller.GetCommodityGroups("") as ActionResult ;
+      var result = await resources.Controller.GetCommodityGroups("") ;
 
       // - Then
       Assert.IsNotNull(result);
-      //result.
-      
+      var okResult = result.Result as ObjectResult;
+      Assert.AreEqual(200, okResult.StatusCode );
+      Assert.AreEqual(commodityGroups.Count,result.Value.Count);
     }
   }
 }

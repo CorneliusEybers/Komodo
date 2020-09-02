@@ -33,7 +33,7 @@ namespace Komodo.Sevices.Controllers
 
     [HttpGet]
     [Route("api/CommodityGroup/GetCommodityGroups/{filterDescription}")]
-    public async Task<ActionResult> GetCommodityGroups(string filterDescription)
+    public async Task<ActionResult<List<CommodityGroup>>> GetCommodityGroups(string filterDescription)
     {
       try
       {
