@@ -14,7 +14,7 @@ namespace Komodo.Ui.Repositories.Commodity
     #region ClassVariables
 
     private IConfiguration mc_Configuration;
-    private HttpClient     mc_PhoneBookHttpClient;
+    private HttpClient     mc_CommodityHttpClient;
 
     #endregion
 
@@ -23,9 +23,9 @@ namespace Komodo.Ui.Repositories.Commodity
     public CommodityRepositoryToService(IConfiguration configuration)
     {
       mc_Configuration = configuration;
-      mc_PhoneBookHttpClient = new HttpClient();
-      mc_PhoneBookHttpClient.DefaultRequestHeaders.Accept.Clear();
-      mc_PhoneBookHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
+      mc_CommodityHttpClient = new HttpClient();
+      mc_CommodityHttpClient.DefaultRequestHeaders.Accept.Clear();
+      mc_CommodityHttpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
     }
 
     ~CommodityRepositoryToService()
@@ -52,8 +52,8 @@ namespace Komodo.Ui.Repositories.Commodity
       if (disposing)
       {
         // - Dispose stuff
-        mc_PhoneBookHttpClient.Dispose();
-        mc_PhoneBookHttpClient = null;
+        mc_CommodityHttpClient.Dispose();
+        mc_CommodityHttpClient = null;
       }
     }
 
@@ -190,7 +190,11 @@ namespace Komodo.Ui.Repositories.Commodity
     /// </returns>
     public IEnumerable<Models.Commodity.Commodity> GetCommodities(string filterDescription)
     {
-      throw new System.NotImplementedException();
+      var commodities = new List<Models.Commodity.Commodity>();
+
+      //var response = mc_CommodityHttpClient.GetAsync("");
+
+      return commodities;
     }
 
     /// <summary>

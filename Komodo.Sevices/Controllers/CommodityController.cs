@@ -32,6 +32,24 @@ namespace Komodo.Sevices.Controllers
     #region Public Methods
 
     [HttpGet]
+    [Route("api/Commodity/GetCommodities")]
+    public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities()
+    {
+      try
+      {
+        var commodities = await mc_CommodityRepository.GetCommodities(string.Empty);
+
+        return Ok(commodities);
+      }
+      catch (Exception exception)
+      {
+        string message = "Error occurred in CommodityController.GetCommodity" + Environment.NewLine;
+        message += exception.Message;
+        return StatusCode(StatusCodes.Status500InternalServerError, message);
+      }
+    }
+
+    [HttpGet]
     [Route("api/Commodity/GetCommodities/{filterDescription}")]
     public async Task<ActionResult<IEnumerable<Commodity>>> GetCommodities(string filterDescription)
     {
@@ -43,7 +61,7 @@ namespace Komodo.Sevices.Controllers
       }
       catch (Exception exception)
       {
-        string message = "Error occurred in CommodityController.GetCommodity" + Environment.NewLine;
+        string message = "Error occurred in CommodityController.GetCommodity with filter" + Environment.NewLine;
         message += exception.Message;
         return StatusCode(StatusCodes.Status500InternalServerError, message);
       }
