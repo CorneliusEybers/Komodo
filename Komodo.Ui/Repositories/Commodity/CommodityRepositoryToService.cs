@@ -129,7 +129,7 @@ namespace Komodo.Ui.Repositories.Commodity
       var serviceUrl = string.Empty;
 
       serviceUrl = mc_Configuration["DomainServices:Commodity:GetCommodityGroup"];
-      serviceUrl += "/" + commodityGroupId.ToString();
+      serviceUrl += commodityGroupId.ToString();
 
       using(var response = await mc_CommodityHttpClient.GetAsync(serviceUrl))
       {

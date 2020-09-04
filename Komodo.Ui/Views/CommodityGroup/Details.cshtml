@@ -17,10 +17,10 @@
   <div class="table">
     <div class="row-cols-3">
       <div class="col-4">
-        <a asp-controller="CommodityGroup" asp-action="Index" class="btn btn-info">Commodities</a>
+        <a asp-controller="CommodityGroup" asp-action="Index" class="btn btn-info">Groups</a>
       </div>
       <div class="col-4">
-        <a asp-controller="CommodityGroup" asp-action="Update" class="btn btn-primary">Edit</a>
+        <a asp-controller="CommodityGroup" asp-action="Update" asp-route-commodityGroupId="@Model.CommodityGroupId" class="btn btn-primary">Edit</a>
       </div>
       <div class="col-4">
         <a asp-controller="CommodityGroup" asp-action="Delete" class="btn btn-danger">Delete</a>

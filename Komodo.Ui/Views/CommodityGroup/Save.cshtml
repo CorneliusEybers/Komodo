@@ -4,7 +4,8 @@
   ViewBag.Title = "Commodity Group Save";
 }
 
-<form asp-controller="CommodityGroup" asp-action="Create" method="post" class="mt-3">
+<form asp-controller="CommodityGroup" asp-action="Save" method="post" class="mt-3">
+  <input hidden asp-for="CommodityGroupId"/>
   <div class="form-group row">
     <label asp-for="CommodityGroupCode" class="col-sm-2 col-form-label"></label>
     <div class="col-sm-10">
@@ -21,6 +22,15 @@
   </div>
   <div asp-validation-summary="All" class="text-danger"></div>
   <div class="form-group row">
-    <button type="submit" class="btn-primary">Save</button>
+    <div class="table">
+      <div class="row-cols-2">
+        <div class="col-6">
+          <a asp-controller="CommodityGroup" asp-action="Index" class="btn btn-info">Groups</a>
+        </div>
+        <div class="col-6">
+          <button type="submit" class="btn btn-primary">Save</button>
+        </div>
+      </div>
+    </div>
   </div>
 </form>

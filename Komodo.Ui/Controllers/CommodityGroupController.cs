@@ -58,25 +58,38 @@ namespace Komodo.Ui.Controllers
       return View("Save",commodityGroup);
     }
 
-    [HttpPost]
-    public IActionResult Create(CommodityGroup commodityGroup)
+    [HttpGet]
+    public ViewResult Update(int commodityGroupId)
     {
+      var commodityGroupResult = mc_CommodityRepository.GetCommodityGroup(commodityGroupId);
+      var commodityGroup       = commodityGroupResult.Result as CommodityGroup;
+
+      return View("Save", commodityGroup);
+    }
+
+    [HttpPost]
+    public IActionResult Save(CommodityGroup commodityGroup)
+    {
+      CommodityGroup commodityGroupSaved;
+
       if (ModelState.IsValid)
       {
-        var commodityGroupCreatedResult = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
-        var commodityGroupCreated = commodityGroupCreatedResult.Result as CommodityGroup;
+        if (commodityGroup.CommodityGroupId < 1)
+        {
+          var commodityGroupCreatedResult = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
+          commodityGroupSaved = commodityGroupCreatedResult.Result as CommodityGroup;
+        }
+        else
+        {
+          var commodityGroupUpdatedResult = mc_CommodityRepository.UpdateCommodityGroup(commodityGroup);
+          commodityGroupSaved = commodityGroupUpdatedResult.Result as CommodityGroup;
+        }
 
-        return View("Details", commodityGroupCreated);
+        return View("Details", commodityGroupSaved);
       }
 
       // - Someting went wrong. Try again!
       return View("Save",commodityGroup);
-    }
-
-    [HttpPut]
-    public ViewResult Update([FromBody]CommodityGroup commodityGroup)
-    {
-      return View();
     }
 
     [HttpDelete]
