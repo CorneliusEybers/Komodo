@@ -65,18 +65,52 @@ namespace Komodo.Ui.Controllers
       return View("Save",commoditySaveViewModel);
     }
 
-    [HttpPost]
-    [Route("/{controller}/create")]
-    public IActionResult Create(Commodity commodity)
+    [HttpGet]
+    [Route("/{controller}/update/{commodityId:int}")]
+    public ViewResult Update(int commodityId)
     {
-      return View();
+      // - ViewModel to combine all the data items required
+      //   to update the Commodity
+      var commoditySaveViewModel = new CommoditySaveViewModel();
+      var commodityResult = mc_CommodityRepository.GetCommodity(commodityId);
+      var commodity = commodityResult.Result as Commodity;
+      var commodityGroupsResult = mc_CommodityRepository.GetCommodityGroups("");
+      var commodityGroups = commodityGroupsResult.Result as List<CommodityGroup>;
+      commoditySaveViewModel.Commodity = commodity;
+      commoditySaveViewModel.CommodityGroups = commodityGroups;
+
+      return View("Save", commoditySaveViewModel);
     }
 
-    [HttpPut]
-    [Route("/{controller}/update")]
-    public ViewResult Update([FromBody]Commodity commodity)
+    [HttpPost]
+    [Route("/{controller}/create")]
+    public IActionResult Save(Commodity commodity)
     {
-      return View();
+      Commodity commoditySaved;
+
+      if (ModelState.IsValid)
+      {
+        if (commodity.CommodityId < 1)
+        {
+          var commodityCreatedResult = mc_CommodityRepository.CreateCommodity(commodity);
+          commoditySaved = commodityCreatedResult.Result as Commodity;
+        }
+        else
+        {
+          var commodityUpdatedResult = mc_CommodityRepository.UpdateCommodity(commodity);
+          commoditySaved = commodityUpdatedResult.Result as Commodity;
+        }
+
+        return View("Details", commoditySaved);
+      }
+
+      // - Houston we have a problem...
+      // - Major Tom to ground control: lets go back home.
+      var commoditySaveViewModel = new CommoditySaveViewModel();
+      var commodityGroupsResult  = mc_CommodityRepository.GetCommodityGroups("");
+      commoditySaveViewModel.CommodityGroups = commodityGroupsResult.Result as List<CommodityGroup>;
+
+      return View("Save",commoditySaveViewModel);
     }
 
     [HttpDelete]

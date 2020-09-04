@@ -4,22 +4,50 @@
   ViewBag.Title = "Commodities";
 }
 
-<div class="table" style="width:100%">
+<div class="container">
   <div class="row">
-    <div class="col-2">Code</div>
-    <div class="col-7">Description</div>
-    <div class="col-2">Group</div>
-    <div class="col-1 text-center">Action</div>
+    <div class="col-2">
+      <label asp-for="CommodityGroups" class="col-form-label"></label>
+    </div>
+    <div class="col-3">
+      [Group Selector here]
+    </div>
+    <div class="col-2">
+      <label asp-for="FilterDescription" class="col-form-label"></label>
+    </div>
+    <div class="col-3">
+      <input asp-for="FilterDescription" class="form-control" placeholder="Filter Description" />
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn-primary">Filter</button>
+    </div>
   </div>
-  @foreach (var commodityViewModel in Model.CommodityViewModels)
-  {
-    <div class="row justify-content-center">
-      <div class="col-2">@commodityViewModel.CommodityCode</div>
-      <div class="col-7">@commodityViewModel.CommodityDescription</div>
-      <div class="col-2">@commodityViewModel.CommodityGroupCode</div>
-      <div class="col-1 text-center">
-        <a asp-controller="Commodity" asp-action="Details" asp-route-commodityId="@commodityViewModel.CommodityId" class="btn-sm btn-primary m-1">View</a>
+  <div class="row">
+    <div class="col-12">
+      Commodities
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="table" style="width: 100%">
+        <div class="row">
+          <div class="col-2">Code</div>
+          <div class="col-7">Description</div>
+          <div class="col-2">Group</div>
+          <div class="col-1 text-center">Action</div>
+        </div>
+        @foreach (var commodityViewModel in Model.CommodityViewModels)
+        {
+          <div class="row justify-content-center">
+            <div class="col-2">@commodityViewModel.CommodityCode</div>
+            <div class="col-7">@commodityViewModel.CommodityDescription</div>
+            <div class="col-2">@commodityViewModel.CommodityGroupCode</div>
+            <div class="col-1 text-center">
+              <a asp-controller="Commodity" asp-action="Details" asp-route-commodityId="@commodityViewModel.CommodityId" class="btn-sm btn-primary m-1">View</a>
+            </div>
+          </div>
+        }
       </div>
     </div>
-  }
+  </div>
 </div>

@@ -59,17 +59,18 @@ namespace Komodo.Ui.Controllers
     }
 
     [HttpPost]
-    public IActionResult Create([FromBody]CommodityGroup commodityGroup)
+    public IActionResult Create(CommodityGroup commodityGroup)
     {
       if (ModelState.IsValid)
       {
-        var createCommodityGroupResult = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
-        var commodityGroupNew = createCommodityGroupResult.Result as CommodityGroup;
+        var commodityGroupCreatedResult = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
+        var commodityGroupCreated = commodityGroupCreatedResult.Result as CommodityGroup;
 
-        return RedirectToAction("Details", new {commodityGroupId = commodityGroupNew.CommodityGroupId});
+        return View("Details", commodityGroupCreated);
       }
 
-      return View();
+      // - Someting went wrong. Try again!
+      return View("Save",commodityGroup);
     }
 
     [HttpPut]

@@ -4,20 +4,42 @@
   ViewBag.Title = "Commodity Groups";
 }
 
-<div class="table" style="width:100%">
+<div class="container">
   <div class="row">
-    <div class="col-2">Code</div>
-    <div class="col-9">Description</div>
-    <div class="col-1 text-center">Action</div>
+    <div class="col-7 float-right">
+      <label asp-for="FilterDescription" class="col-form-label"></label>
+    </div>
+    <div class="col-3">
+      <input asp-for="FilterDescription" class="form-control" placeholder="Filter Description" />
+    </div>
+    <div class="col-2">
+      <button type="submit" class="btn-primary">Filter</button>
+    </div>
   </div>
-  @foreach (var commodityGroup in Model.CommodityGroups)
-  {
-    <div class="row justify-content-center">
-      <div class="col-2">@commodityGroup.CommodityGroupCode</div>
-      <div class="col-9">@commodityGroup.CommodityGroupDescription</div>
-      <div class="col-1 text-center">
-        <a asp-controller="CommodityGroup" asp-action="Details" asp-route-commoditygroupid="@commodityGroup.CommodityGroupId" class="btn-sm btn-primary m-1">View</a>
+  <div class="row">
+    <div class="col-12">
+      Commodities
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-12">
+      <div class="table" style="width:100%">
+        <div class="row">
+          <div class="col-2">Code</div>
+          <div class="col-9">Description</div>
+          <div class="col-1 text-center">Action</div>
+        </div>
+        @foreach (var commodityGroup in Model.CommodityGroups)
+        {
+          <div class="row justify-content-center">
+            <div class="col-2">@commodityGroup.CommodityGroupCode</div>
+            <div class="col-9">@commodityGroup.CommodityGroupDescription</div>
+            <div class="col-1 text-center">
+              <a asp-controller="CommodityGroup" asp-action="Details" asp-route-commoditygroupid="@commodityGroup.CommodityGroupId" class="btn-sm btn-primary m-1">View</a>
+            </div>
+          </div>
+        }
       </div>
     </div>
-  }
+  </div>
 </div>

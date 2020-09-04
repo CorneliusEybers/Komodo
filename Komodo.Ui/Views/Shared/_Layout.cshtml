@@ -15,37 +15,37 @@
   <link href="~/css/site.css" rel="stylesheet" />
 </head>
 <body>
-<div class="container-fluid">
-  <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
-    <a class="navbar-brand" asp-controller="Commodity" asp-action="Index">
-      <img src="~/images/Komodo004.jpg" height="30" width="30"/>
-    </a>
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavBar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" id="collapsibleNavBar">
-      <ul class="navbar-nav">
-        <li class="nav-item">
-          <a asp-controller="Commodity" asp-action="Index" clas="nav-link">Commodities</a>
-        </li>
-        <li class="nav-item">
-          <a asp-controller="Commodity" asp-action="Create" clas="nav-link">New Commodity</a>
-        </li>
-        <li class="nav-item">
-          <a asp-controller="CommodityGroup" asp-action="Index" clas="nav-link">Commodity Groups</a>
-        </li>
-        <li class="nav-item">
-          <a asp-controller="CommodityGroup" asp-action="Create" clas="nav-link">New Commodity Group</a>
-        </li>
-      </ul>
+  <div class="container-fluid">
+    <nav class="navbar navbar-expand-sm bg-dark navbar-dark">
+      <a class="navbar-brand" asp-controller="Commodity" asp-action="Index">
+        <img src="~/images/Komodo004.jpg" height="30" width="30" />
+      </a>
+      <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#collapsibleNavBar">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="collapsibleNavBar">
+        <ul class="navbar-nav">
+          <li class="nav-item">
+            <a asp-controller="Commodity" asp-action="Index" clas="nav-link">Commodities</a>
+          </li>
+          <li class="nav-item">
+            <a asp-controller="Commodity" asp-action="Create" clas="nav-link">New Commodity</a>
+          </li>
+          <li class="nav-item">
+            <a asp-controller="CommodityGroup" asp-action="Index" clas="nav-link">Commodity Groups</a>
+          </li>
+          <li class="nav-item">
+            <a asp-controller="CommodityGroup" asp-action="Create" clas="nav-link">New Commodity Group</a>
+          </li>
+        </ul>
+      </div>
+    </nav>
+    <div>
+      @RenderBody()
     </div>
-  </nav>
-  <div>
-    @RenderBody()
   </div>
-</div>
-<!--NB! JQuery before Bootstrap NB! -->
-<script src="~/lib/jquery/jquery.js"></script>
-<script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
+  <!--NB! JQuery before Bootstrap NB! -->
+  <script src="~/lib/jquery/jquery.js"></script>
+  <script src="~/lib/twitter-bootstrap/js/bootstrap.js"></script>
 </body>
 </html>
