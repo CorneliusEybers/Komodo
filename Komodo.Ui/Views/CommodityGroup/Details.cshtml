@@ -1,11 +1,9 @@
 ﻿@model Komodo.Ui.Models.Commodity.CommodityGroup
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title></title>
-</head>
-<body>
-<h1>View CommodityGroup Details</h1>
+@{
+  ViewBag.Title = "Commodity Group Details";
+}
+
 <div>
   Commodity Group Id : @Model.CommodityGroupId
 </div>
@@ -15,5 +13,3 @@
 <div>
   Commodity Group Description : @Model.CommodityGroupDescription
 </div>
-</body>
-</html>

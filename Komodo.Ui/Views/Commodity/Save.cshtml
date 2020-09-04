@@ -1,11 +1,23 @@
 ﻿@model Komodo.Ui.ViewModels.CommoditySaveViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title></title>
-</head>
-<body>
-<h1>View Commodity Save</h1>
+@{
+  ViewBag.Title = "Commodity Save";
+}
 
-</body>
-</html>
+<form asp-controller="Commodity" asp-action="Create" method="post">
+  <div>
+    <label asp-for="Commodity.CommodityCode"></label>
+    <input asp-for="Commodity.CommodityCode"/>
+  </div>
+  <div>
+    <label asp-for="Commodity.CommodityDescription"></label>
+    <input asp-for="Commodity.CommodityDescription"/>
+  </div>
+  <div>
+    <label asp-for="Commodity.CommodityGroupId"></label>
+    <input asp-for="Commodity.CommodityGroupId"/>
+  </div>
+  <div >
+    <button type="submit">Save</button>
+  </div>
+</form>

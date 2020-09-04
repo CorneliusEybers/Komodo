@@ -1,0 +1,18 @@
+﻿@model Komodo.Ui.Models.Commodity.CommodityGroup
+@{
+  ViewBag.Title = "Commodity Group Save";
+}
+
+<form asp-controller="CommodityGroup" asp-action="Create" method="post">
+  <div>
+    <label asp-for="CommodityGroupCode"></label>
+    <input asp-for="CommodityGroupCode"/>
+  </div>
+  <div>
+    <label asp-for="CommodityGroupDescription"></label>
+    <input asp-for="CommodityGroupDescription"/>
+  </div>
+  <div >
+    <button type="submit">Save</button>
+  </div>
+</form>

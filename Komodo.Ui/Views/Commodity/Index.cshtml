@@ -1,35 +1,25 @@
 ﻿@model Komodo.Ui.ViewModels.CommodityIndexViewModel
 
-<html xmlns="http://www.w3.org/1999/xhtml">
-<head>
-  <title></title>
-</head>
-<body>
-  <h1>View Commodity Index</h1>
-<table>
-  <thead>
-  <tr>Code</tr>
-  <tr>Description</tr>
-  <tr>Group</tr>
-  <tr>Action</tr>
-  </thead>
+@{
+  ViewBag.Title = "Commodities";
+}
+
+<div class="table" style="width:100%">
+  <div class="row">
+    <div class="col-2">Code</div>
+    <div class="col-7">Description</div>
+    <div class="col-2">Group</div>
+    <div class="col-1 text-center">Action</div>
+  </div>
   @foreach (var commodityViewModel in Model.CommodityViewModels)
   {
-    <tr>
-      <td>
-        @commodityViewModel.CommodityCode
-      </td>
-      <td>
-        @commodityViewModel.CommodityDescription
-      </td>
-      <td>
-        @commodityViewModel.CommodityGroupCode
-      </td>
-      <td>
-        Button
-      </td>
-    </tr>
+    <div class="row justify-content-center">
+      <div class="col-2">@commodityViewModel.CommodityCode</div>
+      <div class="col-7">@commodityViewModel.CommodityDescription</div>
+      <div class="col-2">@commodityViewModel.CommodityGroupCode</div>
+      <div class="col-1 text-center">
+        <a asp-controller="Commodity" asp-action="Details" asp-route-commodityId="@commodityViewModel.CommodityId" class="btn-sm btn-primary m-1">View</a>
+      </div>
+    </div>
   }
-</table>
-</body>
-</html>
+</div>

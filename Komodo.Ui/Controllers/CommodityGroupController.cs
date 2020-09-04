@@ -44,7 +44,8 @@ namespace Komodo.Ui.Controllers
     [Route("/{controller}/get/{commoditygroupid:int}")]
     public ViewResult Details(int commodityGroupId)
     {
-      var commodityGroup = mc_CommodityRepository.GetCommodityGroup(commodityGroupId);
+      var getCommidityGroupResult = mc_CommodityRepository.GetCommodityGroup(commodityGroupId);
+      var commodityGroup = getCommidityGroupResult.Result as CommodityGroup;
 
       return View(commodityGroup);
     }
@@ -54,7 +55,7 @@ namespace Komodo.Ui.Controllers
     {
       var commodityGroup = new CommodityGroup();
 
-      return View(commodityGroup);
+      return View("Save",commodityGroup);
     }
 
     [HttpPost]

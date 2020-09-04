@@ -17,15 +17,17 @@ namespace Komodo.Ui.ViewModels
   {
     #region Properties
 
-    public List<CommodityViewModel> CommodityViewModels;
+    public List<CommodityViewModel> CommodityViewModels { get; set; }
 
-    public List<CommodityGroup> CommodityGroups;
+    public List<CommodityGroup> CommodityGroups {get; set; }
+
+    public string FilterDescription { get; set; }
 
     #endregion
 
     #region Construct
 
-    public CommodityIndexViewModel(IEnumerable<CommodityViewModel>  commodityViewModels,
+    public CommodityIndexViewModel(IEnumerable<CommodityViewModel> commodityViewModels,
                                    IEnumerable<CommodityGroup> commodityGroups)
     {
       CommodityViewModels = commodityViewModels.ToList();

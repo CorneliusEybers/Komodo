@@ -59,6 +59,8 @@ namespace Komodo.Ui.Controllers
     public ViewResult Create()
     {
       var commoditySaveViewModel = new CommoditySaveViewModel();
+      var commodityGroupsResult = mc_CommodityRepository.GetCommodityGroups("");
+      commoditySaveViewModel.CommodityGroups = commodityGroupsResult.Result as List<CommodityGroup>;
 
       return View("Save",commoditySaveViewModel);
     }

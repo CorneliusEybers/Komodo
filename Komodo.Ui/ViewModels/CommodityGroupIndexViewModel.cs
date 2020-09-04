@@ -10,7 +10,8 @@ namespace Komodo.Ui.ViewModels
   {
     #region Properties
 
-    public List<CommodityGroup> CommodityGroups;
+    public List<CommodityGroup> CommodityGroups { get; set; }
+    public string FilterDescription { get; set; }
 
     #endregion
 

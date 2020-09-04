@@ -12,7 +12,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Views\Shared\" />
+    <Folder Include="wwwroot\js\" />
   </ItemGroup>
 
 </Project>
