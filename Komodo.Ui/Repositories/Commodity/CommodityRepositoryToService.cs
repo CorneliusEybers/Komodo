@@ -244,7 +244,7 @@ namespace Komodo.Ui.Repositories.Commodity
       var serviceUrl = string.Empty;
       
       serviceUrl = mc_Configuration["DomainServices:Commodity:DeleteCommodityGroup"];
-      serviceUrl += "/" + commodityGroupId.ToString();
+      serviceUrl += commodityGroupId.ToString();
 
       using (var response = await mc_CommodityHttpClient.DeleteAsync(serviceUrl))
       {
@@ -445,7 +445,7 @@ namespace Komodo.Ui.Repositories.Commodity
       var serviceUrl = string.Empty;
 
       serviceUrl = mc_Configuration["DomainServices:Commodity:DeleteCommodity"];
-      serviceUrl += "/" + commodityId.ToString();
+      serviceUrl += commodityId.ToString();
 
       using (var response = await mc_CommodityHttpClient.DeleteAsync(serviceUrl))
       {

@@ -67,6 +67,18 @@ namespace Komodo.Ui.Controllers
       return View("Save", commodityGroup);
     }
 
+    [HttpGet]
+    [Route("/{controller}/delete/commoditygroupid:int")]
+    public ViewResult Delete(int commodityGroupId)
+    {
+      CommodityGroup commodityGroupUndo;
+
+      var commodityGroupUndoResult = mc_CommodityRepository.DeleteCommodityGroup(commodityGroupId);
+      commodityGroupUndo = commodityGroupUndoResult.Result as CommodityGroup;
+
+      return View("Save",commodityGroupUndo);
+    }
+
     [HttpPost]
     public IActionResult Save(CommodityGroup commodityGroup)
     {
@@ -90,13 +102,6 @@ namespace Komodo.Ui.Controllers
 
       // - Someting went wrong. Try again!
       return View("Save",commodityGroup);
-    }
-
-    [HttpDelete]
-    [Route("/{controller}/delete/commoditygroupid:int")]
-    public ViewResult Delete(int commodityGroupId)
-    {
-      return View();
     }
 
     #endregion
