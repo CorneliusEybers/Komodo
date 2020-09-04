@@ -1,5 +1,6 @@
 ﻿// - Required Assemblies
 using System.Collections.Generic;
+using System.Threading.Tasks;
 
 // - Application Assemblies
 using Komodo.Ui.Models;
@@ -22,7 +23,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - List of CommodityGroups
     /// </returns>
-    IEnumerable<Models.Commodity.CommodityGroup> GetCommodityGroups(string filterDescription);
+    Task<IEnumerable<Models.Commodity.CommodityGroup>> GetCommodityGroups(string filterDescription);
 
     /// <summary>
     /// - Retrieve the CommodityGroup of the key specified.
@@ -33,7 +34,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - CommodityGroup
     /// </returns>
-    Models.Commodity.CommodityGroup GetCommodityGroup(int commodityGroupId);
+    Task<Models.Commodity.CommodityGroup> GetCommodityGroup(int commodityGroupId);
 
     /// <summary>
     /// <para> - Add/Create the CommodityGroup</para>
@@ -45,7 +46,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - CommodityGroup Created with its assigned primary key.</para>
     /// <para> - Objects in its saved state.</para>
     /// </returns>
-    Models.Commodity.CommodityGroup CreateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup);
+    Task<Models.Commodity.CommodityGroup> CreateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup);
 
     /// <summary>
     /// <para> - Update/Edit the CommodityGroup</para>
@@ -58,7 +59,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - CommodityGroup updated.</para>
     /// <para> - Object in its saved state.</para>
     /// </returns>
-    Models.Commodity.CommodityGroup UpdateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup);
+    Task<Models.Commodity.CommodityGroup> UpdateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup);
 
     /// <summary>
     /// <para> CommodityGroup to be removed/deleted.</para>
@@ -71,7 +72,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para>   in a ready for insert-state (keys=-1)</para>
     /// <para>   to facilitate undo by re-insert...</para>
     /// </returns>
-    Models.Commodity.CommodityGroup DeleteCommodityGroup(int commodityGroupId);
+    Task<Models.Commodity.CommodityGroup> DeleteCommodityGroup(int commodityGroupId);
 
     #endregion
 
@@ -89,7 +90,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - List of Commodities
     /// </returns>
-    IEnumerable<Models.Commodity.Commodity> GetCommodities(string filterDescription);
+    Task<IEnumerable<Models.Commodity.Commodity>> GetCommodities(string filterDescription);
 
     /// <summary>
     /// - Retrieve the Commodity of the key specified.
@@ -100,7 +101,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - Commodity
     /// </returns>
-    Models.Commodity.Commodity GetCommodity(int commodityId);
+    Task<Models.Commodity.Commodity> GetCommodity(int commodityId);
 
     /// <summary>
     /// <para> - Add/Create the Commodity</para>
@@ -112,7 +113,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - Commodity Created with its assigned primary key.</para>
     /// <para> - Objects in its saved state.</para>
     /// </returns>
-    Models.Commodity.Commodity CreateCommodity(Models.Commodity.Commodity commodity);
+    Task<Models.Commodity.Commodity> CreateCommodity(Models.Commodity.Commodity commodity);
 
     /// <summary>
     /// <para> - Update/Edit the Commodity</para>
@@ -125,7 +126,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - Commodity updated.</para>
     /// <para> - Object in its saved state.</para>
     /// </returns>
-    Models.Commodity.Commodity UpdateCommodity(Models.Commodity.Commodity commodity);
+    Task<Models.Commodity.Commodity> UpdateCommodity(Models.Commodity.Commodity commodity);
 
     /// <summary>
     /// <para> Commodity to be removed/deleted.</para>
@@ -138,7 +139,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para>   in a ready for insert-state (keys=-1)</para>
     /// <para>   to facilitate undo by re-insert...</para>
     /// </returns>
-    Models.Commodity.Commodity DeleteCommodity(int commodityId);
+    Task<Models.Commodity.Commodity> DeleteCommodity(int commodityId);
 
     #endregion
   }

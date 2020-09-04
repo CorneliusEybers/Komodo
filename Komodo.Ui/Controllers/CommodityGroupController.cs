@@ -33,7 +33,9 @@ namespace Komodo.Ui.Controllers
     public ViewResult Index()
     {
       var commodityGroupIndexViewModel = new CommodityGroupIndexViewModel();
-      commodityGroupIndexViewModel.CommodityGroups = mc_CommodityRepository.GetCommodityGroups("").ToList();
+
+      var getCommodityGroupsResult = mc_CommodityRepository.GetCommodityGroups("");
+      commodityGroupIndexViewModel.CommodityGroups = getCommodityGroupsResult.Result as List<CommodityGroup>;
 
       return View(commodityGroupIndexViewModel);
     }
@@ -60,7 +62,8 @@ namespace Komodo.Ui.Controllers
     {
       if (ModelState.IsValid)
       {
-        var commodityGroupNew = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
+        var createCommodityGroupResult = mc_CommodityRepository.CreateCommodityGroup(commodityGroup);
+        var commodityGroupNew = createCommodityGroupResult.Result as CommodityGroup;
 
         return RedirectToAction("Details", new {commodityGroupId = commodityGroupNew.CommodityGroupId});
       }

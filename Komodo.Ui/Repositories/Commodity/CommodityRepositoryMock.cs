@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 
 // - Application Assemblies
 using Komodo.Ui.Models;
@@ -77,7 +78,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - CommodityGroup Created with its assigned primary key.</para>
     /// <para> - Objects in its saved state.</para>
     /// </returns>
-    public Models.Commodity.CommodityGroup CreateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup)
+    public async Task<Models.Commodity.CommodityGroup> CreateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup)
     {
       return new CommodityGroup();
     }
@@ -93,7 +94,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para>   in a ready for insert-state (keys=-1)</para>
     /// <para>   to facilitate undo by re-insert...</para>
     /// </returns>
-    public Models.Commodity.CommodityGroup DeleteCommodityGroup(int commodityGroupId)
+    public async Task<Models.Commodity.CommodityGroup> DeleteCommodityGroup(int commodityGroupId)
     {
       throw new System.NotImplementedException();
     }
@@ -110,7 +111,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - List of Commodities
     /// </returns>
-    public IEnumerable<Models.Commodity.CommodityGroup> GetCommodityGroups(string filterDescription)
+    public async Task<IEnumerable<Models.Commodity.CommodityGroup>> GetCommodityGroups(string filterDescription)
     {
       if (filterDescription == string.Empty)
       {
@@ -131,7 +132,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - Commodity
     /// </returns>
-    public Models.Commodity.CommodityGroup GetCommodityGroup(int commodityGroupId)
+    public async Task<Models.Commodity.CommodityGroup> GetCommodityGroup(int commodityGroupId)
     {
       var commodityGroup = mc_CommodityGroups.FirstOrDefault(CmdGrp => CmdGrp.CommodityGroupId == commodityGroupId);
 
@@ -149,7 +150,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - CommodityGroup updated.</para>
     /// <para> - Object in its saved state.</para>
     /// </returns>
-    public Models.Commodity.CommodityGroup UpdateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup)
+    public async Task<Models.Commodity.CommodityGroup> UpdateCommodityGroup(Models.Commodity.CommodityGroup commodityGroup)
     {
       throw new System.NotImplementedException();
     }
@@ -168,7 +169,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - Commodity Created with its assigned primary key.</para>
     /// <para> - Objects in its saved state.</para>
     /// </returns>
-    public Models.Commodity.Commodity CreateCommodity(Models.Commodity.Commodity commodity)
+    public async Task<Models.Commodity.Commodity> CreateCommodity(Models.Commodity.Commodity commodity)
     {
       throw new System.NotImplementedException();
     }
@@ -184,7 +185,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para>   in a ready for insert-state (keys=-1)</para>
     /// <para>   to facilitate undo by re-insert...</para>
     /// </returns>
-    public Models.Commodity.Commodity DeleteCommodity(int commodityId)
+    public async Task<Models.Commodity.Commodity> DeleteCommodity(int commodityId)
     {
       throw new System.NotImplementedException();
     }
@@ -201,7 +202,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - List of Commodities
     /// </returns>
-    public IEnumerable<Models.Commodity.Commodity> GetCommodities(string filterDescription)
+    public async Task<IEnumerable<Models.Commodity.Commodity>> GetCommodities(string filterDescription)
     {
       if (filterDescription == string.Empty)
       {
@@ -222,7 +223,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <returns>
     /// - Commodity
     /// </returns>
-    public Models.Commodity.Commodity GetCommodity(int commodityId)
+    public async Task<Models.Commodity.Commodity> GetCommodity(int commodityId)
     {
       var commodity = mc_Commodities.FirstOrDefault(Cmd => Cmd.CommodityId == commodityId);
 
@@ -240,7 +241,7 @@ namespace Komodo.Ui.Repositories.Commodity
     /// <para> - Commodity updated.</para>
     /// <para> - Object in its saved state.</para>
     /// </returns>
-    public Models.Commodity.Commodity UpdateCommodity(Models.Commodity.Commodity commodity)
+    public async Task<Models.Commodity.Commodity> UpdateCommodity(Models.Commodity.Commodity commodity)
     {
       throw new System.NotImplementedException();
     }

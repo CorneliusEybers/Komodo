@@ -1,15 +1,12 @@
 ﻿// - Required Assemblies
-
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 
 // - Application Assemblies
-using Komodo.Ui.Models;
 using Komodo.Ui.Models.Commodity;
 using Komodo.Ui.Repositories.Commodity;
 using Komodo.Ui.ViewModels;
-using System;
 
 namespace Komodo.Ui.Controllers
 {
@@ -35,8 +32,12 @@ namespace Komodo.Ui.Controllers
     [HttpGet]
     public ViewResult Index()
     {
-      var commodities = mc_CommodityRepository.GetCommodities("").ToList();
-      var commodityGroups = mc_CommodityRepository.GetCommodityGroups("").ToList();
+      var getCommoditiesResult = mc_CommodityRepository.GetCommodities("");
+      var commodities = getCommoditiesResult.Result as List<Commodity>;
+
+      var retCommodityGroupsResult = mc_CommodityRepository.GetCommodityGroups("");
+      var commodityGroups = retCommodityGroupsResult.Result as List<CommodityGroup>;
+
       var commodityViewModels = BuildCommodityViewModels(commodityGroups, commodities) as List<CommodityViewModel>;
       var commodityIndexViewModel = new CommodityIndexViewModel(commodityViewModels,commodityGroups);
 
@@ -44,11 +45,11 @@ namespace Komodo.Ui.Controllers
     }
 
     [HttpGet]
-    [Route("/{controller}/get/{commodityId:int}")]
+    [Route("/{controller}/details/{commodityId:int}")]
     public ViewResult Details(int commodityId)
     {
-      var commodity = new Commodity();
-      commodity = mc_CommodityRepository.GetCommodity(commodityId);
+      var getCommodityResult = mc_CommodityRepository.GetCommodity(commodityId);
+      var commodity = getCommodityResult.Result as Commodity;
 
       return View(commodity);
     }
@@ -57,9 +58,9 @@ namespace Komodo.Ui.Controllers
     [Route("/{controller}/create")]
     public ViewResult Create()
     {
-      var commodity = new Commodity();
+      var commoditySaveViewModel = new CommoditySaveViewModel();
 
-      return View(commodity);
+      return View("Save",commoditySaveViewModel);
     }
 
     [HttpPost]
